@@ -37,6 +37,7 @@ items_ns.add_resource(ItemList, "")
 store_ns.add_resource(Store, '/<int:id>')
 stores_ns.add_resource(StoreList, "")
 
+
 if __name__ == '__main__':
     db.init_app(app)
     ma.init_app(app)
