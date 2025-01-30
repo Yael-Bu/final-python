@@ -2,17 +2,24 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app  # ספרייה שבה נשמור את הקוד
+    destination: /home/ec2-user/app
 
 hooks:
-  ApplicationStart:
-    - location: scripts/start.sh
-      timeout: 300
-      runas: ec2-user
   ApplicationStop:
     - location: scripts/stop.sh
       timeout: 300
       runas: ec2-user
+
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start.sh
+      timeout: 300
+      runas: ec2-user
+
   ValidateService:
     - location: scripts/validate.sh
       timeout: 300

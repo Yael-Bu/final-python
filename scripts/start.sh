@@ -1,6 +1,8 @@
 #!/bin/bash
-echo "Starting Flask application..."
-docker stop flask-app || true
-docker rm flask-app || true
-docker pull yaelbuchman/flask-app
-docker run -d -p 5000:5000 --name flask-app yaelbuchman/flask-app
+set -e
+
+# Pull latest Docker image
+docker pull yaelbuchman/flask-app:latest
+
+# Run the container
+docker run -d --name flask-app -p 5001:5000 yaelbuchman/flask-app:latest
