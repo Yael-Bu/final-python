@@ -2,7 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app
+    destination: /home/ec2-user/final_python_app
+    exclude:
+      - .gitignore
 
 hooks:
   ApplicationStop:
@@ -11,6 +13,8 @@ hooks:
       runas: ec2-user
 
   BeforeInstall:
+    - location: scripts/remove_gitignore.sh
+      runas: ec2-user
     - location: scripts/install_dependencies.sh
       timeout: 300
       runas: ec2-user
