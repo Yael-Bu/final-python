@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e  # Exit the script if any command fails
 
+# Install git if it's not installed
+if ! command -v git &> /dev/null
+then
+    echo "Git is not installed. Installing..."
+    sudo yum install -y git  # Install Git
+fi
+
 # Define the GitHub repository URL and the destination directory on EC2
 GIT_REPO_URL="https://github.com/Yael-Bu/final-python.git"
 DEST_DIR="/home/ec2-user/app"  # The directory on EC2 where the code will be cloned
