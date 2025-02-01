@@ -23,3 +23,13 @@ echo "Cloning repository from GitHub..."
 git clone "$GIT_REPO_URL" "$DEST_DIR"  # Clone the repo to the specified directory
 
 echo "Repository cloned successfully to $DEST_DIR."  # Confirmation message
+
+# Remove .dockerignore file if it exists
+DOCKERIGNORE_FILE="/home/ec2-user/app/.dockerignore"
+if [ -f "$DOCKERIGNORE_FILE" ]; then
+    echo "Removing existing .dockerignore file..."
+    sudo rm -f "$DOCKERIGNORE_FILE"  # Remove the .dockerignore file
+    echo ".dockerignore file removed."
+else
+    echo ".dockerignore file not found. No action needed."
+fi
